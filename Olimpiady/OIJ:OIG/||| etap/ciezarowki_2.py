@@ -19,8 +19,9 @@ for i in input().split():
     zbior[int(i)][2] = 1
 
 def find(v):
-    if v == zbior[v][0]: return v
-    else: return find(zbior[v][0])
+    if v != zbior[v][0]:
+        zbior[v][0] = find(zbior[v][0])
+    return zbior[v][0]
 
 def join(v1,v2):
     global zbior
