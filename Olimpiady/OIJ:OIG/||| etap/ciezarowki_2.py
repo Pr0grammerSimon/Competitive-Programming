@@ -1,4 +1,4 @@
-#67 points in python :(
+#81 points in python :(
 import queue
 import sys
 sys.setrecursionlimit(200001)
