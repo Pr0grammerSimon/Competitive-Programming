@@ -20,21 +20,18 @@ def query(l,p):
         l//=2
         r//=2
     return wynik_tree
-slownik = {}
+pos = [[] for _ in range(200007)]
 wyniki = [0 for _ in range(int(2e5+7))]
 
 wynik = 0
 ilosc_liczb = int(input())
 liczby = input().split()
 for e,i in enumerate(liczby):
-    if i not in slownik:
-        slownik[i] = [e]
-    else:
-        for v in slownik[i]:
-            wynik_2 = query(v+1,e)
-            update(wynik_2+2,v)
-            wynik = max(wynik_2+2,wynik)
+    for v in pos[int(i)]:
+        wynik_2 = query(v+1,e)
+        update(wynik_2+2,v)
+        wynik = max(wynik_2+2,wynik)
 
-        slownik[i].append(e)
+    pos[int(i)].append(e)
 
 print(wynik)
