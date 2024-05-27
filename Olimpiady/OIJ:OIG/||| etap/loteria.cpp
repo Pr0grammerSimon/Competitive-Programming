@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+unsigned long long akt_ilosc[200007];
 
 int main(){
-    unsigned long long akt_ilosc[200007];
     akt_ilosc[0] = 1;
     unsigned long long n,k,akt;
     const unsigned long long MOD = 1e9+9;
