@@ -15,7 +15,7 @@ int main(){
         graf[b].push_back(a);
         wagi[a].first.push_back(val);
     }
-    cout << "dd";
+    //cout << "dd";
     for (int i=0; i<n; i++){
         sort(wagi[i+1].first.begin(),wagi[i+1].first.end());
         wagi[i+1].second = wagi[i+1].first.size();
