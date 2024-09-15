@@ -12,18 +12,17 @@ slowa = []
 slowo = ""
 for _ in range(ilosc_slow):
     slowa.append(input())
-#print("y"<"x")
+
 for znak in string.ascii_lowercase[::-1][:-1]:
-    #print(znak)
+
     mini = float("inf")
     for i in slowa:
         mini = min(mini,i.count(znak))
-    #print(mini)
+
     if mini > 0:
         for i in range(ilosc_slow):
-            #print(slowa[i],znak)
+
             idx = search(slowa[i],znak,mini)
-            #print(idx,slowa[i],znak)
             slowa[i] = slowa[i][idx+1:]
     slowo += znak*mini
 
