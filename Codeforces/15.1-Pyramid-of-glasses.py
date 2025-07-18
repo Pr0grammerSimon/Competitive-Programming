@@ -8,7 +8,7 @@ t = int(t)
 
 wynik = 0
 ileSzampana[0][0] = t * POJEMNOSC
-#print(ileSzampana)
+
 for wiersz in range(0,n):
     for kolumna in range(0,wiersz+1):
         
