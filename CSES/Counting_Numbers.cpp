@@ -12,7 +12,7 @@ using vi = vector<int>;
 const int K = 19;
 
 
-ll dp[K][11];
+ll dp[K][10];
 
 ll odp(ll a){
     if (a < 0) return 0;
@@ -29,28 +29,37 @@ ll odp(ll a){
     ll act_result = 0;
 
     for (int i = 1; i < digits.size(); i++) {
-        for (int j = 1; j < 11; j++){
-            act_result += dp[i][j];
+        for (int j = 1; j < 10; j++){
+            act_result += dp[i][j]; //numbers with less size
         }
     }
 
+    if (digits.size() > 1) act_result ++; //0
+
     bool git = 1;
     int popp = -1;
-        cout << a << ' ' << act_result << ' ' << git << '\n';
 
+    for (int j = 1; j < digits[0]; j++) {
+        if (j == popp) continue;
 
-    for (int i = 0; i < digits.size() - 1; i++) {
-        
+        for (int k = 0; k < 10; k++) {
+            if (k != j) act_result += dp[digits.size() - 0 - 1][k];
+        }
 
-        for (int j = 1; j < digits[i]; j++) {
-            
-            for (int k = 0; k <= 10; k++) {
+    }
+
+    if (digits.size() > 1) popp = digits[0];
+
+    for (int i = 1; i < digits.size() - 1; i++) {
+
+        for (int j = 0; j < digits[i]; j++) {
+            if (j == popp) continue;
+
+            for (int k = 0; k < 10; k++) {
                 if (k != j) act_result += dp[digits.size() - i - 1][k];
             }
 
         }
-
-        cout << a << ' ' << act_result << ' ' << git << '\n';
 
         if (digits[i] == popp) {
             git = 0;
@@ -60,10 +69,12 @@ ll odp(ll a){
         popp = digits[i];
     }
 
-    cout << a << ' ' << act_result << ' ' << git << '\n';
 
-
-    if (git) act_result += digits.back() + (digits.back() != popp);
+    if (git){
+        for (int i = 0; i <= digits.back(); i++) {
+            if (i != popp) act_result ++;
+        }
+    }
 
     return act_result;
 
@@ -75,11 +86,11 @@ int main(){
     cin.tie(0);
 
 
-    for (int i = 0; i < 11; i++) dp[0][i] = 1;
+    for (int i = 0; i < 10; i++) dp[1][i] = 1;
 
-    for (int i = 1; i < K; i++) {
-        for (int j = 0; j <= 10; j++) {
-            for (int j2 = 0; j <= 10; j++) {
+    for (int i = 2; i < K; i++) {
+        for (int j = 0; j < 10; j++) {
+            for (int j2 = 0; j2 < 10; j2++) {
                 if (j == j2) continue;
                 dp[i][j] = (dp[i][j] + dp[i - 1][j2]);
             }
@@ -88,14 +99,8 @@ int main(){
 
     ll a, b;
 
-    //cin >> a >> b;
-
-    for (int i = 11; i <= 220; i++) cout << odp(i) << '\n';
-
-    //cout << odp(b) - odp(a - 1);
-
-
+    cin >> a >> b;
+    
+    cout << odp(b) - odp(a - 1);
 
 }
-
-//problem in progress
